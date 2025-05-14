@@ -1,6 +1,32 @@
+```html
 <html>
   <body>
     <h1>CashApp Crusher 3000</h1>
-    <button>DOWNLOAD CRUSHER.EXE (FREE)</button>
+    <button onclick="downloadCrusher()">DOWNLOAD CRUSHER.EXE (FREE)</button>
+    <div id="progressBar" style="display:none;">
+      <progress value="0" max="100" id="progress"></progress>
+      <p id="status">Downloading Crusher.exe...</p>
+    </div>
+    <p id="error" style="display:none; color:red;">DOWNLOAD FAILED... JUST KIDDING, YOU'RE BROKE</p>
+    <script>
+      function downloadCrusher() {
+        document.getElementById("progressBar").style.display = "block";
+        var progress = document.getElementById("progress");
+        var status = document.getElementById("status");
+        var error = document.getElementById("error");
+        var i = 0;
+        var interval = setInterval(function() {
+          progress.value = i;
+          status.innerHTML = "Downloading Crusher.exe... (" + i + "%)";
+          i += 10;
+          if (i >= 100) {
+            clearInterval(interval);
+            document.getElementById("progressBar").style.display = "none";
+            error.style.display = "block";
+          }
+        }, 500);
+      }
+    </script>
   </body>
 </html>
+```
